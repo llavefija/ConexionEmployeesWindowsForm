@@ -83,5 +83,19 @@ namespace ConexionEmployeesWondowsForm
             db.Dispose();
             base.OnFormClosing(e);
         }
+
+        private void buttonAddJob_Click(object sender, EventArgs e)
+        {
+            AñadirTrabajo formAgregarTrabajo = new AñadirTrabajo(db);
+            formAgregarTrabajo.ShowDialog(); // Muestra el formulario como un diálogo modal
+            ActualizarEstadoConexion();
+        }
+
+        private void buttonLista_Click(object sender, EventArgs e)
+        {
+            ListaTrabajos formListaTrabajos = new ListaTrabajos(db);
+            formListaTrabajos.ShowDialog(); // Muestra el formulario como un diálogo modal
+            ActualizarEstadoConexion();
+        }
     }
 }

@@ -31,15 +31,17 @@
             this.labelEstadoConexion = new System.Windows.Forms.Label();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.buttonDisconnect = new System.Windows.Forms.Button();
+            this.buttonAddJob = new System.Windows.Forms.Button();
+            this.buttonLista = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelEstadoConexion
             // 
             this.labelEstadoConexion.BackColor = System.Drawing.Color.Lavender;
             this.labelEstadoConexion.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold);
-            this.labelEstadoConexion.Location = new System.Drawing.Point(116, 14);
+            this.labelEstadoConexion.Location = new System.Drawing.Point(13, 14);
             this.labelEstadoConexion.Name = "labelEstadoConexion";
-            this.labelEstadoConexion.Size = new System.Drawing.Size(200, 30);
+            this.labelEstadoConexion.Size = new System.Drawing.Size(408, 30);
             this.labelEstadoConexion.TabIndex = 0;
             this.labelEstadoConexion.Text = "ESTADO CONEXIÓN";
             this.labelEstadoConexion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -67,11 +69,35 @@
             this.buttonDisconnect.UseVisualStyleBackColor = true;
             this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
             // 
+            // buttonAddJob
+            // 
+            this.buttonAddJob.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonAddJob.Location = new System.Drawing.Point(13, 130);
+            this.buttonAddJob.Name = "buttonAddJob";
+            this.buttonAddJob.Size = new System.Drawing.Size(408, 35);
+            this.buttonAddJob.TabIndex = 3;
+            this.buttonAddJob.Text = "Añadir trabajo";
+            this.buttonAddJob.UseVisualStyleBackColor = true;
+            this.buttonAddJob.Click += new System.EventHandler(this.buttonAddJob_Click);
+            // 
+            // buttonLista
+            // 
+            this.buttonLista.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonLista.Location = new System.Drawing.Point(12, 208);
+            this.buttonLista.Name = "buttonLista";
+            this.buttonLista.Size = new System.Drawing.Size(408, 35);
+            this.buttonLista.TabIndex = 4;
+            this.buttonLista.Text = "Lista de trabajos";
+            this.buttonLista.UseVisualStyleBackColor = true;
+            this.buttonLista.Click += new System.EventHandler(this.buttonLista_Click);
+            // 
             // FormConexión
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(433, 450);
+            this.Controls.Add(this.buttonLista);
+            this.Controls.Add(this.buttonAddJob);
             this.Controls.Add(this.buttonDisconnect);
             this.Controls.Add(this.buttonConnect);
             this.Controls.Add(this.labelEstadoConexion);
@@ -87,6 +113,8 @@
         private System.Windows.Forms.Label labelEstadoConexion;
         private System.Windows.Forms.Button buttonConnect;
         private System.Windows.Forms.Button buttonDisconnect;
+        private System.Windows.Forms.Button buttonAddJob;
+        private System.Windows.Forms.Button buttonLista;
     }
 }
 
