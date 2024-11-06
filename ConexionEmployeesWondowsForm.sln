@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConexionEmployeesWondowsForm", "ConexionEmployeesWondowsForm\ConexionEmployeesWondowsForm.csproj", "{14B4EE63-E2BD-4466-8DF0-2C8B7766A536}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConexionEmployeesWindowsForm", "ConexionEmployeesWondowsForm\ConexionEmployeesWindowsForm.csproj", "{14B4EE63-E2BD-4466-8DF0-2C8B7766A536}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

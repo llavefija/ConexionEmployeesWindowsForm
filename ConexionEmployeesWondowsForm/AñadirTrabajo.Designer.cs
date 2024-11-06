@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AñadirTrabajo));
             this.labelTitle = new System.Windows.Forms.Label();
             this.labelMinSalary = new System.Windows.Forms.Label();
             this.labelMaxSalary = new System.Windows.Forms.Label();
@@ -37,6 +39,7 @@
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.buttonBorrarCampos = new System.Windows.Forms.Button();
             this.buttonMenu = new System.Windows.Forms.Button();
+            this.toolTipAñadir = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // labelTitle
@@ -96,6 +99,7 @@
             // buttonGuardar
             // 
             this.buttonGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonGuardar.Location = new System.Drawing.Point(267, 77);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(120, 31);
@@ -107,6 +111,7 @@
             // buttonBorrarCampos
             // 
             this.buttonBorrarCampos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.buttonBorrarCampos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonBorrarCampos.Location = new System.Drawing.Point(141, 77);
             this.buttonBorrarCampos.Name = "buttonBorrarCampos";
             this.buttonBorrarCampos.Size = new System.Drawing.Size(120, 31);
@@ -118,6 +123,7 @@
             // buttonMenu
             // 
             this.buttonMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonMenu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonMenu.Location = new System.Drawing.Point(15, 77);
             this.buttonMenu.Name = "buttonMenu";
             this.buttonMenu.Size = new System.Drawing.Size(120, 31);
@@ -140,8 +146,10 @@
             this.Controls.Add(this.labelMaxSalary);
             this.Controls.Add(this.labelMinSalary);
             this.Controls.Add(this.labelTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AñadirTrabajo";
             this.Text = "AñadirTrabajo";
+            this.Load += new System.EventHandler(this.AñadirTrabajo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,5 +166,6 @@
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.Button buttonBorrarCampos;
         private System.Windows.Forms.Button buttonMenu;
+        private System.Windows.Forms.ToolTip toolTipAñadir;
     }
 }

@@ -30,6 +30,8 @@ namespace ConexionEmployeesWondowsForm
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaTrabajos));
             this.labelLista = new System.Windows.Forms.Label();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.textBoxMaxSalary = new System.Windows.Forms.TextBox();
@@ -44,6 +46,8 @@ namespace ConexionEmployeesWondowsForm
             this.dataGridViewJobs = new System.Windows.Forms.DataGridView();
             this.buttonBorrarCampos = new System.Windows.Forms.Button();
             this.buttonMenu = new System.Windows.Forms.Button();
+            this.buttonGuardar = new System.Windows.Forms.Button();
+            this.toolTipLista = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJobs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,10 +60,12 @@ namespace ConexionEmployeesWondowsForm
             this.labelLista.TabIndex = 2;
             this.labelLista.Text = "LISTA DE TRABAJOS";
             this.labelLista.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelLista.Click += new System.EventHandler(this.labelLista_Click);
             // 
             // buttonBuscar
             // 
             this.buttonBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonBuscar.Location = new System.Drawing.Point(281, 136);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(121, 31);
@@ -156,20 +162,20 @@ namespace ConexionEmployeesWondowsForm
             // 
             // dataGridViewJobs
             // 
+            this.dataGridViewJobs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewJobs.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.dataGridViewJobs.Location = new System.Drawing.Point(28, 190);
             this.dataGridViewJobs.Name = "dataGridViewJobs";
             this.dataGridViewJobs.RowHeadersWidth = 51;
             this.dataGridViewJobs.RowTemplate.Height = 24;
-            this.dataGridViewJobs.Size = new System.Drawing.Size(655, 347);
+            this.dataGridViewJobs.Size = new System.Drawing.Size(655, 300);
             this.dataGridViewJobs.TabIndex = 18;
-            this.dataGridViewJobs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewJobs_CellContentClick);
-            this.dataGridViewJobs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
             // 
             // buttonBorrarCampos
             // 
             this.buttonBorrarCampos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.buttonBorrarCampos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonBorrarCampos.Location = new System.Drawing.Point(155, 136);
             this.buttonBorrarCampos.Name = "buttonBorrarCampos";
             this.buttonBorrarCampos.Size = new System.Drawing.Size(120, 31);
@@ -181,6 +187,7 @@ namespace ConexionEmployeesWondowsForm
             // buttonMenu
             // 
             this.buttonMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonMenu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonMenu.Location = new System.Drawing.Point(28, 136);
             this.buttonMenu.Name = "buttonMenu";
             this.buttonMenu.Size = new System.Drawing.Size(120, 31);
@@ -189,11 +196,24 @@ namespace ConexionEmployeesWondowsForm
             this.buttonMenu.UseVisualStyleBackColor = false;
             this.buttonMenu.Click += new System.EventHandler(this.buttonMenu_Click);
             // 
+            // buttonGuardar
+            // 
+            this.buttonGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonGuardar.Location = new System.Drawing.Point(27, 506);
+            this.buttonGuardar.Name = "buttonGuardar";
+            this.buttonGuardar.Size = new System.Drawing.Size(656, 31);
+            this.buttonGuardar.TabIndex = 21;
+            this.buttonGuardar.Text = "Guardar cambios en la base de datos";
+            this.buttonGuardar.UseVisualStyleBackColor = false;
+            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
+            // 
             // ListaTrabajos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 549);
+            this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonMenu);
             this.Controls.Add(this.buttonBorrarCampos);
             this.Controls.Add(this.dataGridViewJobs);
@@ -208,8 +228,10 @@ namespace ConexionEmployeesWondowsForm
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.labelLista);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ListaTrabajos";
             this.Text = "Lista de trabajos";
+            this.Load += new System.EventHandler(this.ListaTrabajos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJobs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -232,5 +254,7 @@ namespace ConexionEmployeesWondowsForm
         private System.Windows.Forms.DataGridView dataGridViewJobs;
         private System.Windows.Forms.Button buttonBorrarCampos;
         private System.Windows.Forms.Button buttonMenu;
+        private Button buttonGuardar;
+        private ToolTip toolTipLista;
     }
 }

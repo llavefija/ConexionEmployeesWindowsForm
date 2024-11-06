@@ -10,15 +10,31 @@ using System.Windows.Forms;
 
 namespace ConexionEmployeesWondowsForm
 {
+
+
     public partial class FormConexión : Form
     {
+        private ToolTip toolTip;
 
         private DataBase db; // Instancia de la clase DataBase
+
+        
 
         public FormConexión()
         {
             InitializeComponent();
             db = new DataBase();
+
+            // Inicializar ToolTip
+            toolTip = new ToolTip();
+
+            // Configurar ToolTip para un botón específico
+            toolTip.SetToolTip(buttonConnect, "Establece conexión con la BD Employees.");
+            toolTip.SetToolTip(buttonDisconnect, "Desconecta la conexión con la BD Employees.");
+            toolTip.SetToolTip(buttonSalir, "Salir de la aplicación.");
+            toolTip.SetToolTip(buttonLista, "Abre el menú para listar todos los trabajos de la BD.");
+            toolTip.SetToolTip(buttonAddJob, "Abre el menú para añadir un trabajo a la BD.");
+
 
         }
 
@@ -66,14 +82,7 @@ namespace ConexionEmployeesWondowsForm
 
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            if (db.ConnectDB())
-            {
-                MessageBox.Show("Conexión exitosa a la base de datos.");
-            }
-            else
-            {
-                MessageBox.Show("Error al conectar a la base de datos.");
-            }
+            db.ConnectDB();
             ActualizarEstadoConexion();
         }
 
@@ -96,6 +105,11 @@ namespace ConexionEmployeesWondowsForm
             ListaTrabajos formListaTrabajos = new ListaTrabajos(db);
             formListaTrabajos.ShowDialog(); // Muestra el formulario como un diálogo modal
             ActualizarEstadoConexion();
+        }
+
+        private void buttonSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // Cierra toda la aplicación
         }
     }
 }
