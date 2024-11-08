@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AbelEmployees" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=85.208.21.117,54321;Initial Catalog=AbelEmployees;Persist Security Info=True;User ID=sa;Trust Server Certificate=True" SettingsObjectName="ConexionEmployeesWondowsForm.Properties.Settings" SettingsPropertyName="AbelEmployeesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.countries" Member="countries">
+    <Type Name="countries">
+      <Column Name="country_id" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="country_name" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="region_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="countries_locations" Member="locations" ThisKey="country_id" OtherKey="country_id" Type="locations" />
+      <Association Name="regions_countries" Member="regions" ThisKey="region_id" OtherKey="region_id" Type="regions" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.regions" Member="regions">
+    <Type Name="regions">
+      <Column Name="region_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="region_name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Association Name="regions_countries" Member="countries" ThisKey="region_id" OtherKey="region_id" Type="countries" />
+    </Type>
+  </Table>
+  <Table Name="dbo.departments" Member="departments">
+    <Type Name="departments">
+      <Column Name="department_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="department_name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="location_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="departments_employees" Member="employees" ThisKey="department_id" OtherKey="department_id" Type="employees" />
+      <Association Name="locations_departments" Member="locations" ThisKey="location_id" OtherKey="location_id" Type="locations" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dependents" Member="dependents">
+    <Type Name="dependents">
+      <Column Name="dependent_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="first_name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="last_name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="relationship" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="employees_dependents" Member="employees" ThisKey="employee_id" OtherKey="employee_id" Type="employees" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.employees" Member="employees">
+    <Type Name="employees">
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="first_name" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="last_name" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="phone_number" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="hire_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="job_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="salary" Type="System.Decimal" DbType="Decimal(8,2) NOT NULL" CanBeNull="false" />
+      <Column Name="manager_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="department_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="employees_dependents" Member="dependents" ThisKey="employee_id" OtherKey="employee_id" Type="dependents" />
+      <Association Name="employees_employees" Member="employees2" ThisKey="employee_id" OtherKey="manager_id" Type="employees" />
+      <Association Name="departments_employees" Member="departments" ThisKey="department_id" OtherKey="department_id" Type="departments" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="employees_employees" Member="employees1" ThisKey="manager_id" OtherKey="employee_id" Type="employees" IsForeignKey="true" />
+      <Association Name="jobs_employees" Member="jobs" ThisKey="job_id" OtherKey="job_id" Type="jobs" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.jobs" Member="jobs">
+    <Type Name="jobs">
+      <Column Name="job_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="job_title" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="min_salary" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
+      <Column Name="max_salary" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
+      <Association Name="jobs_employees" Member="employees" ThisKey="job_id" OtherKey="job_id" Type="employees" />
+    </Type>
+  </Table>
+  <Table Name="dbo.locations" Member="locations">
+    <Type Name="locations">
+      <Column Name="location_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="street_address" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="postal_code" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="city" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="state_province" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="country_id" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Association Name="locations_departments" Member="departments" ThisKey="location_id" OtherKey="location_id" Type="departments" />
+      <Association Name="countries_locations" Member="countries" ThisKey="country_id" OtherKey="country_id" Type="countries" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Personas" Member="Personas">
+    <Type Name="Personas">
+      <Column Name="first_name" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="last_name" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

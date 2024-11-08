@@ -17,12 +17,17 @@ namespace ConexionEmployeesWondowsForm
 
         private ToolTip toolTip;
 
+        private Job job;
+
         private ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
 
         internal ListaTrabajos(DataBase Db)
         {
             InitializeComponent();
             this.db = Db;
+            this.job = new Job(db);
+
+
             db.ConnectDB();
 
             // Inicializar ToolTip
@@ -40,6 +45,10 @@ namespace ConexionEmployeesWondowsForm
             // Agregar evento para verificar datos en tiempo real
             dataGridViewJobs.CellValueChanged += DataGridViewJobs_CellValueChanged;
             dataGridViewJobs.RowValidating += DataGridViewJobs_RowValidating;
+
+            // Establecer el valor predeterminado "=" en los ComboBox
+            comboBoxMinCompare.SelectedItem = "=";
+            comboBoxMaxCompare.SelectedItem = "=";
 
             CargarTrabajos();
         }
@@ -155,48 +164,10 @@ namespace ConexionEmployeesWondowsForm
         {
             try
             {
-                // Crear la consulta SQL
-                string query = "SELECT job_id, job_title, min_salary, max_salary FROM Jobs WHERE 1=1";
-
-                // Agregar filtros a la consulta
-                if (!string.IsNullOrEmpty(jobTitle))
-                {
-                    query += " AND job_title LIKE @job_title";
-                }
-                if (minSalary.HasValue)
-                {
-                    query += $" AND min_salary {minSalaryCondition} @min_salary";
-                }
-                if (maxSalary.HasValue)
-                {
-                    query += $" AND max_salary {maxSalaryCondition} @max_salary";
-                }
-
-                using (SqlCommand command = new SqlCommand(query, db.ReturnConecction()))
-                {
-                    // Agregar parámetros
-                    if (!string.IsNullOrEmpty(jobTitle))
-                    {
-                        command.Parameters.AddWithValue("@job_title", "%" + jobTitle + "%");
-                    }
-                    if (minSalary.HasValue)
-                    {
-                        command.Parameters.AddWithValue("@min_salary", minSalary.Value);
-                    }
-                    if (maxSalary.HasValue)
-                    {
-                        command.Parameters.AddWithValue("@max_salary", maxSalary.Value);
-                    }
-
-                    // Llenar el DataTable
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
                     // Asignar el DataTable al DataGridView
-                    dataGridViewJobs.DataSource = dataTable;
+                    dataGridViewJobs.DataSource = job.CargarTrabajos(jobTitle, minSalaryCondition, minSalary, maxSalaryCondition, maxSalary);
                     dataGridViewJobs.Columns["job_id"].Visible = false;
-                }
+                
             }
             catch (Exception ex)
             {
@@ -293,7 +264,7 @@ namespace ConexionEmployeesWondowsForm
                         if (jobId != 0) // Si es un trabajo existente en la base de datos
                         {
                             // Eliminar de la base de datos
-                            DeleteJob(db.ReturnConecction(), jobId);
+                            job.DeleteJob(jobId);
                         }
                         // Eliminar la fila del DataGridView
                         dataGridViewJobs.Rows.Remove(row);
@@ -312,11 +283,11 @@ namespace ConexionEmployeesWondowsForm
 
                     if (jobId == 0)  // Si el jobId es 0, significa que es un nuevo trabajo
                     {
-                        InsertNewJob(db.ReturnConecction(), jobTitle, minSalary, maxSalary);
+                        job.InsertJob(jobTitle, minSalary, maxSalary);
                     }
                     else
                     {
-                        UpdateJob(db.ReturnConecction(), jobId, jobTitle, minSalary, maxSalary);
+                        job.UpdateJob(jobId, jobTitle, minSalary, maxSalary);
                     }
                 }
 
@@ -325,41 +296,6 @@ namespace ConexionEmployeesWondowsForm
             catch (Exception ex)
             {
                 MessageBox.Show($"Error guardando los datos: {ex.Message}");
-            }
-        }
-
-        private void InsertNewJob(SqlConnection connection, string jobTitle, decimal minSalary, decimal maxSalary)
-        {
-            string query = "INSERT INTO Jobs (job_title, min_salary, max_salary) VALUES (@job_title, @min_salary, @max_salary)";
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@job_title", jobTitle);
-                command.Parameters.AddWithValue("@min_salary", minSalary);
-                command.Parameters.AddWithValue("@max_salary", maxSalary);
-                command.ExecuteNonQuery(); // Ejecuta la inserción
-            }
-        }
-
-        private void UpdateJob(SqlConnection connection, int jobId, string jobTitle, decimal minSalary, decimal maxSalary)
-        {
-            string query = "UPDATE Jobs SET job_title = @job_title, min_salary = @min_salary, max_salary = @max_salary WHERE job_id = @job_id";
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@job_id", jobId);
-                command.Parameters.AddWithValue("@job_title", jobTitle);
-                command.Parameters.AddWithValue("@min_salary", minSalary);
-                command.Parameters.AddWithValue("@max_salary", maxSalary);
-                command.ExecuteNonQuery(); // Ejecuta la actualización
-            }
-        }
-
-        private void DeleteJob(SqlConnection connection, int jobId)
-        {
-            string query = "DELETE FROM Jobs WHERE job_id = @job_id";
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@job_id", jobId);
-                command.ExecuteNonQuery(); // Ejecuta el DELETE
             }
         }
         private void ListaTrabajos_Load(object sender, EventArgs e)

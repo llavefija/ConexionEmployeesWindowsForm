@@ -38,6 +38,8 @@
             this.buttonSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTipConexion = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonEmployee = new System.Windows.Forms.Button();
+            this.buttonListaEmpleados = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +85,7 @@
             // 
             this.buttonAddJob.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAddJob.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.buttonAddJob.Location = new System.Drawing.Point(13, 130);
+            this.buttonAddJob.Location = new System.Drawing.Point(12, 116);
             this.buttonAddJob.Name = "buttonAddJob";
             this.buttonAddJob.Size = new System.Drawing.Size(408, 35);
             this.buttonAddJob.TabIndex = 3;
@@ -95,7 +97,7 @@
             // 
             this.buttonLista.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonLista.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.buttonLista.Location = new System.Drawing.Point(12, 184);
+            this.buttonLista.Location = new System.Drawing.Point(13, 232);
             this.buttonLista.Name = "buttonLista";
             this.buttonLista.Size = new System.Drawing.Size(408, 35);
             this.buttonLista.TabIndex = 4;
@@ -108,7 +110,7 @@
             this.buttonSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.buttonSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSalir.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.buttonSalir.Location = new System.Drawing.Point(12, 234);
+            this.buttonSalir.Location = new System.Drawing.Point(13, 504);
             this.buttonSalir.Name = "buttonSalir";
             this.buttonSalir.Size = new System.Drawing.Size(408, 35);
             this.buttonSalir.TabIndex = 5;
@@ -119,26 +121,52 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::ConexionEmployeesWondowsForm.Properties.Resources.trabajadores;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 275);
+            this.pictureBox1.Image = global::ConexionEmployeesWondowsForm.Properties.Resources.empleados;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 342);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(408, 227);
+            this.pictureBox1.Size = new System.Drawing.Size(408, 155);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // buttonEmployee
+            // 
+            this.buttonEmployee.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonEmployee.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonEmployee.Location = new System.Drawing.Point(13, 172);
+            this.buttonEmployee.Name = "buttonEmployee";
+            this.buttonEmployee.Size = new System.Drawing.Size(408, 35);
+            this.buttonEmployee.TabIndex = 7;
+            this.buttonEmployee.Text = "Añadir empleado";
+            this.buttonEmployee.UseVisualStyleBackColor = true;
+            this.buttonEmployee.Click += new System.EventHandler(this.buttonEmployee_Click);
+            // 
+            // buttonListaEmpleados
+            // 
+            this.buttonListaEmpleados.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonListaEmpleados.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonListaEmpleados.Location = new System.Drawing.Point(13, 292);
+            this.buttonListaEmpleados.Name = "buttonListaEmpleados";
+            this.buttonListaEmpleados.Size = new System.Drawing.Size(408, 35);
+            this.buttonListaEmpleados.TabIndex = 8;
+            this.buttonListaEmpleados.Text = "Lista de empleados";
+            this.buttonListaEmpleados.UseVisualStyleBackColor = true;
             // 
             // FormConexión
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 449);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(433, 551);
+            this.Controls.Add(this.buttonAddJob);
+            this.Controls.Add(this.buttonListaEmpleados);
+            this.Controls.Add(this.buttonEmployee);
             this.Controls.Add(this.buttonSalir);
             this.Controls.Add(this.buttonLista);
-            this.Controls.Add(this.buttonAddJob);
             this.Controls.Add(this.buttonDisconnect);
             this.Controls.Add(this.buttonConnect);
             this.Controls.Add(this.labelEstadoConexion);
+            this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConexión";
             this.Text = "Conexión a SQL Server";
@@ -158,6 +186,8 @@
         private System.Windows.Forms.Button buttonSalir;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolTip toolTipConexion;
+        private System.Windows.Forms.Button buttonEmployee;
+        private System.Windows.Forms.Button buttonListaEmpleados;
     }
 }
 

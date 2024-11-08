@@ -127,11 +127,12 @@ namespace ConexionEmployeesWondowsForm
             // 
             // labelInstrucciones
             // 
-            this.labelInstrucciones.Location = new System.Drawing.Point(152, 54);
+            this.labelInstrucciones.Location = new System.Drawing.Point(31, 39);
             this.labelInstrucciones.Name = "labelInstrucciones";
-            this.labelInstrucciones.Size = new System.Drawing.Size(372, 16);
+            this.labelInstrucciones.Size = new System.Drawing.Size(648, 57);
             this.labelInstrucciones.TabIndex = 14;
-            this.labelInstrucciones.Text = "Introduce un valor en el campo por el que quieras filtrar";
+            this.labelInstrucciones.Text = "Para filtrar el contenido de la tabla introduce los parametros de busqueda.\r\nSe p" +
+    "uede añadir, modificar y eliminar datos desde la tabla.\r\n";
             this.labelInstrucciones.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // comboBoxMinCompare

@@ -71,22 +71,32 @@ namespace ConexionEmployeesWondowsForm.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Icon gerente_1 {
+        internal static System.Drawing.Bitmap empleados {
             get {
-                object obj = ResourceManager.GetObject("gerente_1", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                object obj = ResourceManager.GetObject("empleados", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap trabajadores {
+        internal static System.Drawing.Bitmap engranajes {
             get {
-                object obj = ResourceManager.GetObject("trabajadores", resourceCulture);
+                object obj = ResourceManager.GetObject("engranajes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        /// </summary>
+        internal static System.Drawing.Icon gerente_1 {
+            get {
+                object obj = ResourceManager.GetObject("gerente_1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

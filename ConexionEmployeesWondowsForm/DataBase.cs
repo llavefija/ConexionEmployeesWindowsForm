@@ -13,12 +13,15 @@ namespace ConexionEmployeesWondowsForm
         // Objeto de conexión a la base de datos
         private SqlConnection conexion;
 
+        // Verifica si la conexion esta establecida
         public bool IsConnected => conexion != null && conexion.State == System.Data.ConnectionState.Open;
 
+        // Metodo que devuelve la conexion
         public SqlConnection ReturnConecction()
         {
             return conexion;
         }
+
         // Método para conectar a la base de datos
         public bool ConnectDB()
         {

@@ -22,8 +22,10 @@ namespace ConexionEmployeesWondowsForm
         internal AñadirTrabajo(DataBase Db)
         {
             InitializeComponent();
-            this.db = Db;
-            db.ConnectDB();
+
+            this.db = Db; // Inicializa db
+            this.job = new Job(db); // Inicializa job
+            db.ConnectDB(); // Establece conexion con la bd si no se ha conectado anteriormente
 
             // Inicializar ToolTip
             toolTip = new ToolTip();
@@ -33,26 +35,33 @@ namespace ConexionEmployeesWondowsForm
             toolTip.SetToolTip(buttonGuardar, "Guarda el trabajo nuevo a la BD.");
             toolTip.SetToolTip(buttonMenu, "Regresa al menú principal.");
 
+            // Establece un minSalary y un maxSalary a 0
             textBoxMinSalary.Text = "0";
             textBoxMaxSalary.Text = "0";
 
+            
+
         }
 
+        // Valida que el titulo sea correcto
         private void textBoxTitle_TextChanged(object sender, EventArgs e)
         {
             ValidateFields();
         }
 
+        // Valida que el minSalary sea correcto
         private void textBoxMinSalary_TextChanged(object sender, EventArgs e)
         {
             ValidateFields();
         }
 
+        // Valida que el maxSalary sea correcto
         private void textBoxMaxSalary_TextChanged(object sender, EventArgs e)
         {
             ValidateFields();
         }
 
+        // Metodo para validar parametros
         private void ValidateFields()
         {
             bool isValid = true;
@@ -64,38 +73,29 @@ namespace ConexionEmployeesWondowsForm
             }
             else
             {
-                textBoxTitle.ForeColor = Color.Green;
+                textBoxTitle.ForeColor = Color.Green; // Establece un color verde si el texto es correcto
 
             }
 
-            // Validar MinSalary y MaxSalary
-            if (textBoxMinSalary.Text is null)
-            {
-                textBoxMinSalary.Text = "0";
-            }
             if (!decimal.TryParse(textBoxMinSalary.Text, out decimal minSalary))
             {
                 isValid = false;
-                textBoxMinSalary.ForeColor = Color.Red;
+                textBoxMinSalary.ForeColor = Color.Red; // Establece un color rojo si el formato o contenido no es correcto
             }
             else
             {
-                textBoxMinSalary.ForeColor = Color.Green;
+                textBoxMinSalary.ForeColor = Color.Green; // Establece un color verde si el formato o contenido si es correcto
 
             }
 
-            if (textBoxMaxSalary.Text is null)
-            {
-                textBoxMaxSalary.Text = "0";
-            }
             if (!decimal.TryParse(textBoxMaxSalary.Text, out decimal maxSalary))
             {
                 isValid = false;
-                textBoxMaxSalary.ForeColor = Color.Red;
+                textBoxMaxSalary.ForeColor = Color.Red; // Establece un color rojo si el formato o contenido no es correcto
             }
             else
             {
-                textBoxMaxSalary.ForeColor = Color.Green;
+                textBoxMaxSalary.ForeColor = Color.Green; // Establece un color verde si el formato o contenido si es correcto
 
             }
 
@@ -111,6 +111,7 @@ namespace ConexionEmployeesWondowsForm
             buttonGuardar.Enabled = isValid;
         }
 
+        // Evento del boton borrar campos
         private void buttonBorrarCampos_Click(object sender, EventArgs e)
         {
             textBoxTitle.Clear();
@@ -120,6 +121,7 @@ namespace ConexionEmployeesWondowsForm
 
         }
 
+        // Evento del boton guardar campos
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
 
@@ -147,6 +149,7 @@ namespace ConexionEmployeesWondowsForm
 
         }
 
+        // Evento del boton menu
         private void buttonMenu_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -154,22 +157,18 @@ namespace ConexionEmployeesWondowsForm
 
         private void labelMaxSalary_Click(object sender, EventArgs e)
         {
-
         }
 
         private void labelMinSalary_Click(object sender, EventArgs e)
         {
-
         }
 
         private void labelTitle_Click(object sender, EventArgs e)
         {
-
         }
 
         private void AñadirTrabajo_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

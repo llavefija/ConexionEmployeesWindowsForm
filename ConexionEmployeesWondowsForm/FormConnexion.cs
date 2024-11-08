@@ -111,5 +111,17 @@ namespace ConexionEmployeesWondowsForm
         {
             Application.Exit(); // Cierra toda la aplicación
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonEmployee_Click(object sender, EventArgs e)
+        {
+            AñadirEmpledo formAñadirEmpleado = new AñadirEmpledo(db);
+            formAñadirEmpleado.ShowDialog(); // Muestra el formulario como un diálogo modal
+            ActualizarEstadoConexion();
+        }
     }
 }

@@ -48,7 +48,7 @@
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(120, 16);
             this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "Titulo del trabajo";
+            this.labelTitle.Text = "*Titulo del trabajo";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelTitle.Click += new System.EventHandler(this.labelTitle_Click);
             // 
@@ -148,7 +148,7 @@
             this.Controls.Add(this.labelTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AñadirTrabajo";
-            this.Text = "AñadirTrabajo";
+            this.Text = "Añadir Trabajo";
             this.Load += new System.EventHandler(this.AñadirTrabajo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
